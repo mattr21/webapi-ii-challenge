@@ -55,6 +55,48 @@ server.post('/api/posts', (req, res) => {
         })    
 });
 
+// DELETE - delete specific post by id
+server.delete('/api/posts/:id', (req, res) => {
+    const id = req.params.id;
+
+    db
+        .remove(id)
+        .then(deleted => {
+            if(deleted) {
+                res.status(204).end();
+            } else {
+                res.status(404).json({ message: "The post with the specified ID does not exist." });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ error: "The post could not be removed" })
+        })
+});
+
+// PUT - changes specific post by id
+server.put('/api/posts/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+
+    if(!changes.title || !changes.contents) {
+        res.status(400).json({ errorMessage: "Please provide title and contents for the post." });
+        return;
+    }
+
+    db
+        .update(id, changes)
+        .then(updated => {
+            if(updated) {
+                res.status(200).json(updated);
+            } else {
+                res.status(404).json({ message: "The post with the specified ID does not exist." });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ error: "The post information could not be modified." });
+        })
+});
+
 server.listen(4000, () => {
-    console.log('\n*** API up and running on port 4k ***\n')
+    console.log('\n*** API up and running on port 4k ***\n');
 });
