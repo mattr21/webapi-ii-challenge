@@ -1,18 +1,18 @@
-// Step 4a - create a router
+// Step 5a - create a router
 const express = require('express');
 
-// Step 10 - copy/paste the below line from server.js to this file
+// Step 11 - copy/paste the below line from server.js to this file
 const db = require('../data/db.js');
 
-// Step 4b
+// Step 5b
 const router = express.Router();
 
-// Step 5 - change 'server' in below requests to 'router' (Ex. server.get(...) changes to router.get(...))
+// Step 6 - change 'server' in below requests to 'router' (Ex. server.get(...) changes to router.get(...))
 
-// Step 3 - create a new folder for posts (or whatever you're working with) and move the below code from router.js to this file (posts-router.js) 
+// Step 4 - create a new folder for posts (or whatever you're working with) and move the below code from router.js to this file (posts-router.js) 
 // *************************************
 
-// Step 9 - replace /api/posts with / from all requests. We do this because we setup the router in server.js to include this so we don't have to here 
+// Step 10 - replace /api/posts with / from all requests. We do this because we setup the router in server.js to include this so we don't have to here 
 
 // GET - retrieve all posts
 router.get('/', (req, res) => {
@@ -106,5 +106,5 @@ router.put('/:id', (req, res) => {
 });
 // *************************************
 
-// Step 6 - export this file so it can be imported in server.js
+// Step 7 - export this file so it can be imported in server.js
 module.exports = router;
